@@ -26,7 +26,7 @@ login.send_keys("gusta@megasav.com")
 password=driver.find_element("xpath",'//*[@id="password_"]')
 password.click()
 time.sleep(1)
-password.send_keys("usernamepassword")
+password.send_keys("Mert1606")
 
 log_in=driver.find_element("xpath",'//*[@id="loginForm"]/div[4]/div[1]/button')
 
@@ -42,13 +42,13 @@ achains =ActionChains(driver)
 
 time.sleep(1)
 achains.move_to_element(continue_link).perform()
-time.sleep(1)
+time.sleep(2)
 morebutton=driver.find_element(By.CLASS_NAME, 'navigation-categories-dropdown-head-title').click()
-time.sleep(1)
+time.sleep(2)
 
 content =driver.find_element("xpath",'/html/body/main/section[2]/div/div/div[2]/div/div[2]/div[1]/div/div[2]/div[3]/a/h4').click()
 
-time.sleep(1)
+time.sleep(2)
 
 
 pruduct=driver.find_element(By.CLASS_NAME, 'product-title')
@@ -58,7 +58,7 @@ time.sleep(1)
 
 smallTitle=driver.find_element(By.CLASS_NAME, 'product-title-small')
 
-print(f"Kısa Açıklama:{smallTitle.text}")
+print(f"description:{smallTitle.text}")
 
 time.sleep(1)
 
@@ -69,11 +69,31 @@ print(stokMiktar.text)
 time.sleep(1)
 ImageUrl=driver.find_element(By.CLASS_NAME, 'area-product-image').find_element(By.CSS_SELECTOR,'a').get_attribute('href')
 
-print(f"Resim Url:{ImageUrl}")
 time.sleep(1)
 
+price=driver.find_element(By.CLASS_NAME, 'product-price-item-price').find_element(By.TAG_NAME,'strong')
+print(f"Özel Fiyat :{price.text}")
+
+time.sleep(1)
+
+print(f"Image Url:{ImageUrl}")
+time.sleep(1)
+
+print("----------------------------------------------------------------")
+print("----------------------------------------------------------------")
+
+table=driver.find_element(By.CLASS_NAME, 'table-1')
+row=table.find_elements(By.TAG_NAME,'tr')
 
 
+for i in row:
+
+    col=i.find_element(By.TAG_NAME,'th')
+    col2=i.find_element(By.TAG_NAME,'td')
+    print(f"{col.text} : {col2.text}")
+    time.sleep(2)
+
+   
 
 
 
