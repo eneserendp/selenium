@@ -5,6 +5,8 @@ import time
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.common.by import By
 from selenium.webdriver import ActionChains
+from selenium.webdriver.common.action_chains import ActionChains
+
 
 
 
@@ -15,7 +17,6 @@ url = 'https://www.edenge.com.tr/'
 driver = webdriver.Chrome(ChromeDriverManager().install())
 
 driver.get(url)
-driver.maximize_window()
 time.sleep(1)
 
 login=driver.find_element("xpath",'//*[@id="username_"]')
@@ -67,23 +68,24 @@ stokMiktar=driver.find_element("xpath",'/html/body/main/section[2]/div/div/div/d
 print(stokMiktar.text)
 
 time.sleep(1)
-ImageUrl=driver.find_element(By.CLASS_NAME, 'area-product-image').find_element(By.CSS_SELECTOR,'a').get_attribute('href')
 
-time.sleep(1)
+images = driver.find_elements(By.CLASS_NAME, 'owl-item') 
+for i in images:
+    a=i.find_element(By.CLASS_NAME,'itemgi').get_attribute('href')
+
+    if a != None:    
+        print(f"YENİ URL:{a}")
+ 
 
 price=driver.find_element(By.CLASS_NAME, 'product-price-item-price').find_element(By.TAG_NAME,'strong')
 print(f"Özel Fiyat :{price.text}")
 
 time.sleep(1)
 
-print(f"Image Url:{ImageUrl}")
-time.sleep(1)
-
-print("----------------------------------------------------------------")
-print("----------------------------------------------------------------")
 
 table=driver.find_element(By.CLASS_NAME, 'table-1')
 row=table.find_elements(By.TAG_NAME,'tr')
+
 
 
 for i in row:
@@ -91,9 +93,14 @@ for i in row:
     col=i.find_element(By.TAG_NAME,'th')
     col2=i.find_element(By.TAG_NAME,'td')
     print(f"{col.text} : {col2.text}")
-    time.sleep(2)
+    
+print("----------------------------------------------------------------")
+print("----------------------------------------------------------------")
 
-   
+driver.back()
+
+
+
 
 
 
