@@ -26,7 +26,7 @@ login.send_keys("gusta@megasav.com")
 password=driver.find_element("xpath",'//*[@id="password_"]')
 password.click()
 time.sleep(1)
-password.send_keys("Mert1606")
+password.send_keys("pass")
 
 log_in=driver.find_element("xpath",'//*[@id="loginForm"]/div[4]/div[1]/button')
 
