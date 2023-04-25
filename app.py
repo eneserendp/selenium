@@ -22,7 +22,7 @@ login.send_keys("gusta@megasav.com")
 password=driver.find_element("xpath",'//*[@id="password_"]')
 password.click()
 time.sleep(1)
-password.send_keys("Mert1606")
+password.send_keys("pass")
 
 log_in=driver.find_element("xpath",'//*[@id="loginForm"]/div[4]/div[1]/button')
 
@@ -76,14 +76,7 @@ content2=driver.find_element(By.CLASS_NAME,"PagedList-skipToNext").find_element(
 
     #     time.sleep(3)
 
-from selenium import webdriver
-from selenium.webdriver.common.by import By
-import time
 
-driver = webdriver.Chrome()
-
-# Sayfayı aç
-driver.get("http://example.com")
 
 for index , i in enumerate(content) :
      exam=i.find_elements(By.CLASS_NAME,"table-cell")
