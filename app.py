@@ -19,7 +19,7 @@ login.send_keys("gusta@megasav.com")
 password=driver.find_element("xpath",'//*[@id="password_"]')
 password.click()
 time.sleep(1)
-password.send_keys("pass")
+password.send_keys("Mert1606")
 log_in=driver.find_element("xpath",'//*[@id="loginForm"]/div[4]/div[1]/button')
 log_in.click()
 time.sleep(1)
@@ -87,11 +87,20 @@ get_data()
 
 kok_adi = "URUNLER"
 kok = ET.Element(kok_adi)
+
 for ogeler in GenelList:
+    
     ET.SubElement(kok, "Urun").text = str(ogeler)
+    print(type(ogeler))
+    print("----------------------------------------------------------------")
+    for x in ogeler.items():
+        if isinstance(x, tuple):
+            # tuple değerini str olarak dönüştürüyoruz
+            x = ''.join(str(x))
+        ET.SubElement(kok,x).text = str(x)
+        print(x)
+        
     # dict for dönügüsü
-
-
 tree = ET.ElementTree(kok)
 tree.write("app.xml", encoding="utf-8", xml_declaration=True)    
  
@@ -130,5 +139,5 @@ tree.write("app.xml", encoding="utf-8", xml_declaration=True)
 #         print("SIRADAKİ SAYFAYA GEÇİLDİ")
 #         time.sleep(2)
             
-print(GenelList) 
-print(len(GenelList)) 
+# print(GenelList) 
+# print(len(GenelList)) 
